@@ -45,6 +45,19 @@ class User extends Authenticatable  implements JWTSubject
      */
     public function getJWTCustomClaims()
     {
-        return [];
+        return [
+            'id' => $this->id,
+        ];
     }
+
+    /**
+     * Finds User By Email
+     *
+     * @return App\User or null
+     */
+    public static function findByEmail($email) {
+        return self::where('email', $email)
+            ->first();
+    }
+
 }
