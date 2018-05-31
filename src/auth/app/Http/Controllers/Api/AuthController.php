@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -95,14 +95,19 @@ class AuthController extends BaseApi
         }
 
         if (empty($request->input('password'))) {
-            return ResponsePackage::error('Password is invalid', [], BaseApi::HTTP_INVALID_REQUEST)
+            return ResponsePackage::error('Password is required', [], BaseApi::HTTP_INVALID_REQUEST)
+                ->response();
+        }
+
+        if (empty($request->input('name'))) {
+            return ResponsePackage::error('Name is required', [], BaseApi::HTTP_INVALID_REQUEST)
                 ->response();
         }
 
         $user = User::create([
             'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-            'name' => $request->input('email'),
+            'password' =>  Hash::make($request->input('password')),
+            'name' => $request->input('name'),
         ]);
 
         return ResponsePackage::create('User Created', ['user' => $user])
@@ -132,7 +137,8 @@ class AuthController extends BaseApi
                 ->response();
         }
 
-        $user->email =  $user->name = $request->input('email') ?: $user->email;
+        $user->email = $request->input('email') ?: $user->email;
+        $user->name = $request->input('name') ?: $user->name;
         $user->password = $request->input('password') ? Hash::make($request->input('password')) : $user->password;
         $user->save();
 
@@ -144,7 +150,7 @@ class AuthController extends BaseApi
      * Deletes an User Account
      */
     public function delete(Request $request) {
-        $tokenPayload = auth('')->payload();
+        $tokenPayload = auth('api')->payload();
 
         if ($tokenPayload->get('id') !== $request->input('id')) {
             return ResponsePackage::error('Not allowed', [], BaseApi::HTTP_AUTH_ERROR)
