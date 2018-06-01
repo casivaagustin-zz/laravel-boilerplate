@@ -9,6 +9,10 @@ You need PHP 7 or higher in your machine
 
 Clone the Repo
 
+```
+git clone git@github.com:casivaagustin/laravel-boilerplate.git
+```
+
 Go to the laravel folder and copy the .env.local as .env
 
 ```
