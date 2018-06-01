@@ -3,7 +3,7 @@
 @section('content')
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{ url('/home') }}">Data Providers</a>
+        <a href="{{ url('/home') }}">{{ config('app.name') }}</a>
     </div>
 
     <!-- /.login-logo -->

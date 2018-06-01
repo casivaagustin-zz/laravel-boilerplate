@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Data Providers IO'),
+    'name' => env('APP_NAME', 'Laravel Boilerplate'),
 
     /*
     |--------------------------------------------------------------------------

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Data Providers</title>
+        <title>{{ config('app.name') }}</title>
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <style>
             html, body {
@@ -63,11 +63,7 @@
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="title m-b-md">
-                    Data Providers
-                </div>
-
-                <div class="links">
-                    Reporting and Analitycs tools for your data in the cloud
+                    {{ config('app.name') }}
                 </div>
             </div>
         </div>
