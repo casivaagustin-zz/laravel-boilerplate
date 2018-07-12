@@ -97,7 +97,7 @@
 
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
-            <strong>Copyright © {{ date('Y') }} <a href="https://www.dataproviders.io">dataproviders.io</a>.</strong> All rights reserved.
+            <strong>Copyright © {{ date('Y') }} <a href="https://www.42mate.com">42mate</a>.</strong> All rights reserved.
         </footer>
 
     </div>

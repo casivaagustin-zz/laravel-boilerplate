@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use App\Http\Controllers\Resources\ResponsePackage;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +47,17 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+        if ($request->expectsJson()) {
+            if (get_class($exception) == 'Illuminate\Auth\Access\AuthorizationException') {
+                return ResponsePackage::error($exception->getMessage(), [], 401)->response();
+            }
+            if (get_class($exception) == 'Illuminate\Validation\ValidationException') {
+                return ResponsePackage::error($exception->getMessage(), $exception->validator->errors(), 422)->response();
+            }
+            return ResponsePackage::error($exception->getMessage(), $exception->getTrace())->response();
+        }
+        else {
+            return parent::render($request, $exception);
+        }
     }
 }

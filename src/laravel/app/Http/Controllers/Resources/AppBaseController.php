@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Resources;
 
 use InfyOm\Generator\Utils\ResponseUtil;
 use Response;

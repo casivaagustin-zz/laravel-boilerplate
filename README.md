@@ -30,7 +30,8 @@ Copy the env example and customize the file if is needed
 
 ```
 cp env-example .env
-docker-compose up -d nginx mysql phpmyadmin redis workspace \n
+docker stop $(docker ps -a -q)
+docker-compose up -d nginx mysql phpmyadmin redis workspace maildev \n
 ```
 
 Once it's done run composer into the laravel folder
